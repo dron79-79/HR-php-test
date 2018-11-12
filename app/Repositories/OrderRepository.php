@@ -6,7 +6,7 @@ use Carbon\Carbon;
 class OrderRepository {
     
     public function getOrders(){
-	$orders = Order::with('partner')->with('products')->get();
+	$orders = Order::with('partner')->with('products')->orderBy('delivery_dt')->get();
 	//Так как полей для формирования таблицы нужно всего 5 и длинна полей небольшая максиум varchar256(4 байта)
 	//то мною принято решение вместо пяти обращений к базе данных сделать одно, 
 	//тем более что по условию ТЗ список заказов не лимитирован и тяжелый запрос
